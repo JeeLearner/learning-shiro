@@ -7,16 +7,25 @@ import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.Factory;
+import org.apache.shiro.util.ThreadContext;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class LoginLogoutTest {
 
+    @After
+    public void teardown() throws Exception{
+        //退出时请解除绑定Subject到线程 否则对下次测试造成影响
+        ThreadContext.unbindSubject();
+    }
+
     @Test
     public void testHelloWorld(){
         //1、获取SecurityManager工厂，此处使用Ini配置文件初始化SecurityManager
         //Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
-        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-realm.ini");
+        //Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-realm.ini");
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-realm-jdbc.ini");
 
         //2、得到SecurityManager实例 并绑定给SecurityUtils
         SecurityManager securityManager = factory.getInstance();
