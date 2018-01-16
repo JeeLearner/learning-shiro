@@ -8,6 +8,7 @@
   <modules>
     <module>chapter02</module>
       <module>chapter03</module>
+      <module>chapter05</module>
   </modules>
   <packaging>pom</packaging>
 
