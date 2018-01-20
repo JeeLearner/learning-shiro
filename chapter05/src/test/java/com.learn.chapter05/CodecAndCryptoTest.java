@@ -4,6 +4,8 @@ import org.apache.shiro.codec.Base64;
 import org.apache.shiro.codec.CodecSupport;
 import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.AesCipherService;
+import org.apache.shiro.crypto.BlowfishCipherService;
+import org.apache.shiro.crypto.DefaultBlockCipherService;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.*;
 import org.apache.shiro.util.ByteSource;
@@ -133,7 +135,42 @@ public class CodecAndCryptoTest {
         Assert.assertEquals(text, text2);
     }
 
+    /**
+     * Blowfish算法实现
+     */
+    @Test
+    public void testBlowfishCipherService() {
+        BlowfishCipherService blowfishCipherService = new BlowfishCipherService();
+        blowfishCipherService.setKeySize(128);
+        //生成key
+        Key key = blowfishCipherService.generateNewKey();
 
+        String text = "hello";
+        //加密
+        String encrptText = blowfishCipherService.encrypt(text.getBytes(), key.getEncoded()).toHex();
+        //解密
+        String text2 = new String(blowfishCipherService.decrypt(Hex.decode(encrptText), key.getEncoded()).getBytes());
+        Assert.assertEquals(text, text2);
+    }
+
+    /**
+     * DefaultBlock算法实现
+     */
+    @Test
+    public void testDefaultBlockCipherService() throws Exception {
+        //对称加密，使用Java的JCA（javax.crypto.Cipher）加密API，常见的如 'AES', 'Blowfish'
+        DefaultBlockCipherService cipherService = new DefaultBlockCipherService("AES");
+        cipherService.setKeySize(128);
+        //生成key
+        Key key = cipherService.generateNewKey();
+
+        String text = "hello";
+        //加密
+        String encrptText = cipherService.encrypt(text.getBytes(), key.getEncoded()).toHex();
+        //解密
+        String text2 = new String(cipherService.decrypt(Hex.decode(encrptText), key.getEncoded()).getBytes());
+        Assert.assertEquals(text, text2);
+    }
 
 
 

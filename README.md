@@ -15,3 +15,4 @@
  *  chapter02身份验证
  *  chapter03授权
  *  chapter05编码/加密
+ *  chapter06Realm及相关对象
