@@ -19,3 +19,5 @@
  *  chapter07 与WEB集成
  *  chapter08 拦截器机制
  *  chapter09 JSP标签
+ *  chapter10 会话管理
+ *  chapter11 缓存机制
