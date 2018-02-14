@@ -85,8 +85,9 @@ public class OrganizationDaoImpl implements OrganizationDao {
     @Override
     public void move(Organization source, Organization target) {
         String moveSourceSql = "update sys_organization set parent_id=?,parent_ids=? where id=?";
-        jdbcTemplate.update(moveSourceSql, target.getId(), target.getParentIds(), source.getId());
+        jdbcTemplate.update(moveSourceSql, target.getId(), target.makeSelfAsParentIds(), source.getId());
+        /*jdbcTemplate.update(moveSourceSql, target.getId(), target.getParentIds(), source.getId());
         String moveSourceDescendantsSql = "update sys_organization set parent_ids=concat(?, substring(parent_ids, length(?))) where parent_ids like ?";
-        jdbcTemplate.update(moveSourceDescendantsSql, target.makeSelfAsParentIds(), source.makeSelfAsParentIds(), source.makeSelfAsParentIds() + "%");
+        jdbcTemplate.update(moveSourceDescendantsSql, target.makeSelfAsParentIds(), source.makeSelfAsParentIds(), source.makeSelfAsParentIds() + "%");*/
     }
 }
