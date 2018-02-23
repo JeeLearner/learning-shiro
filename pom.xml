@@ -21,6 +21,8 @@
       <module>chapter15-server</module>
       <module>chapter15-client</module>
       <module>chapter16</module>
+      <module>chapter17-server</module>
+      <module>chapter17-client</module>
   </modules>
   <packaging>pom</packaging>
 
