@@ -26,3 +26,4 @@
  *  chapter14 SSL
  *  chapter15 单点登录 【client启动报错,原因不明】
  *  chapter16 综合实例
+ *  chapter17-server OAuth2服务端 【三个控制器buildJSONMessage()报错】
