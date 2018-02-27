@@ -28,4 +28,6 @@
  *  chapter16 综合实例
  *  chapter17-server OAuth2服务端 【三个控制器buildJSONMessage()报错】
  *  chapter17-client OAuth2客户端
- *  chapter18 并发登录人数控制
+ *  chapter18 并发登录人数控制 chapter16代码
+ *  chapter19 动态URL权限控制 chapter16代码
+ *  chapter20 无状态WEB应用集成
