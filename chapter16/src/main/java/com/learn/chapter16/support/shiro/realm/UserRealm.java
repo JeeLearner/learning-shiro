@@ -10,6 +10,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.xml.bind.Element;
+
 public class UserRealm extends AuthorizingRealm{
 
     @Autowired

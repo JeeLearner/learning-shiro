@@ -3,6 +3,7 @@ delete from sys_user;
 delete from sys_role;
 delete from sys_resource;
 delete from sys_organization;
+delete from sys_url_filter;
 
 insert into sys_user values(1,1,'admin','d3c59d25033dbf980d29554025c23a75','8d78869f470951332959580424d4bf4f', '1', false);
 insert into sys_organization values(1, '总公司', 0, '0/', true);
@@ -36,4 +37,11 @@ insert into sys_resource values(43, '角色修改', 'button', '', 41, '0/1/41/',
 insert into sys_resource values(44, '角色删除', 'button', '', 41, '0/1/41/', 'role:delete', true);
 insert into sys_resource values(45, '角色查看', 'button', '', 41, '0/1/41/', 'role:view', true);
 
-insert into sys_role values(1, 'admin', '超级管理员', '11,21,31,41', true);
+insert into sys_resource values(46, 'URL管理', 'menu', '/urlFilter', 1, '0/1/', 'urlFilter:*', true);
+insert into sys_resource values(47, 'URL新增', 'button', '', 46, '0/1/46/', 'urlFilter:create', true);
+insert into sys_resource values(48, 'URL修改', 'button', '', 46, '0/1/46/', 'urlFilter:update', true);
+insert into sys_resource values(49, 'URL删除', 'button', '', 46, '0/1/46/', 'urlFilter:delete', true);
+insert into sys_resource values(50, 'URL查看', 'button', '', 46, '0/1/46/', 'urlFilter:view', true);
+
+
+insert into sys_role values(1, 'admin', '超级管理员', '11,21,31,41,46', true);

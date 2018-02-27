@@ -100,16 +100,65 @@
         <property name="loginUrl" value="/login"/>
     </bean>
 
+    <!--并发登录人数控制-->
+    <bean id="kickoutSessionControlFilter" class="com.learn.chapter16.support.shiro.filter.KickoutSessionControlFilter">
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="sessionManager" ref="sessionManager"/>
+
+        <property name="kickoutAfter" value="false"/>
+        <property name="maxSession" value="2"/>
+        <property name="kickoutUrl" value="/login?kickout=1"/>
+    </bean>
+
     <bean id="sysUserFilter" class="com.learn.chapter16.support.shiro.filter.SysUserFilter"/>
+
+    <!--urlFilter begin-->
+    <bean id="filterChainManager" class="com.learn.chapter16.urlfilter.support.CustomDefaultFilterChainManager">
+        <property name="loginUrl" value="/login"/>
+        <property name="successUrl" value="/"/>
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+
+        <property name="customFilters">
+            <util:map>
+                <entry key="authc" value-ref="formAuthenticationFilter"/>
+                <entry key="sysUser" value-ref="sysUserFilter"/>
+            </util:map>
+        </property>
+        <property name="defaultFilterChainDefinitions">
+            <value>
+                /login = authc
+                /logout = logout
+                /unauthorized.jsp = authc
+                /** = user,sysUser
+            </value>
+        </property>
+    </bean>
+
+    <bean id="filterChainResolver" class="com.learn.chapter16.urlfilter.support.CustomPathMatchingFilterChainResolver">
+        <property name="customDefaultFilterChainManager" ref="filterChainManager"/>
+    </bean>
 
     <!-- Shiro的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject" ref="shiroFilter"/>
+        <property name="targetMethod" value="setFilterChainResolver"/>
+        <property name="arguments" ref="filterChainResolver"/>
+    </bean>
+    <!--urlFilter end-->
+
+    <!-- Shiro的Web过滤器 -->
+    <!--<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="/login"/>
         <property name="filters">
             <util:map>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
                 <entry key="sysUser" value-ref="sysUserFilter"/>
+                <entry key="kickout" value-ref="kickoutSessionControlFilter"/>
             </util:map>
         </property>
         <property name="filterChainDefinitions">
@@ -117,10 +166,10 @@
                 /login = authc
                 /logout = logout
                 /authenticated = authc
-                /** = user,sysUser
+                /** = kickout,user,sysUser
             </value>
         </property>
-    </bean>
+    </bean>-->
 
     <!-- Shiro生命周期处理器-->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>

@@ -2,6 +2,7 @@ drop table if exists sys_user;
 drop table if exists sys_organization;
 drop table if exists sys_resource;
 drop table if exists sys_role;
+drop table if exists sys_url_filter;
 
 create table sys_user (
   id bigint auto_increment,
@@ -51,3 +52,13 @@ create table sys_role (
   constraint pk_sys_role primary key(id)
 ) charset=utf8 ENGINE=InnoDB;
 create index idx_sys_role_resource_ids on sys_role(resource_ids);
+
+create table sys_url_filter (
+  id bigint auto_increment,
+  name varchar(100),
+  url varchar(100),
+  roles varchar(100),
+  permissions varchar(100),
+  constraint pk_sys_url_filter primary key(id)
+) charset=utf8 ENGINE=InnoDB;
+create unique index idx_sys_url_filter_url on sys_url_filter(url);
