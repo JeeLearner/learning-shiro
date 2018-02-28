@@ -31,3 +31,4 @@
  *  chapter18 并发登录人数控制 chapter16代码
  *  chapter19 动态URL权限控制 chapter16代码
  *  chapter20 无状态WEB应用集成
+ *  chapter21 授予身份与切换身份
