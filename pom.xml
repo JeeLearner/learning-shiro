@@ -23,6 +23,7 @@
       <module>chapter16</module>
       <module>chapter17-server</module>
       <module>chapter17-client</module>
+      <module>chapter20</module>
   </modules>
   <packaging>pom</packaging>
 
