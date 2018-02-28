@@ -6,6 +6,8 @@ import com.learn.chapter16.resource.entity.Resource;
 import com.learn.chapter16.resource.service.ResourceService;
 import com.learn.chapter16.role.entity.Role;
 import com.learn.chapter16.role.service.RoleService;
+import com.learn.chapter16.user.entity.User;
+import com.learn.chapter16.user.service.UserService;
 import com.learn.spring.SpringUtils;
 import org.springframework.util.CollectionUtils;
 
@@ -107,9 +109,18 @@ public class Functions {
         return sb.toString();
     }
 
+    public static String username(Long userId) {
+        User user = getUserService().findOne(userId);
+        if(user == null) {
+            return "";
+        }
+        return user.getUsername();
+    }
+
     private static OrganizationService organizationService;
     private static RoleService roleService;
     private static ResourceService resourceService;
+    private static UserService userService;
 
     public static OrganizationService getOrganizationService() {
         if(organizationService == null) {
@@ -130,5 +141,12 @@ public class Functions {
             resourceService = SpringUtils.getBean(ResourceService.class);
         }
         return resourceService;
+    }
+
+    public static UserService getUserService() {
+        if(userService == null) {
+            userService = SpringUtils.getBean(UserService.class);
+        }
+        return userService;
     }
 }

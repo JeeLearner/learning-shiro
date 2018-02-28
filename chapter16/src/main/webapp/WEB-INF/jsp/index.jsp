@@ -10,7 +10,10 @@
 
 <iframe name="content" class="ui-layout-center"
         src="${pageContext.request.contextPath}/welcome" frameborder="0" scrolling="auto"></iframe>
-<div class="ui-layout-north">欢迎[<shiro:principal/>]学习Shiro综合案例，<a href="${pageContext.request.contextPath}/logout">退出</a></div>
+<div class="ui-layout-north">欢迎[<span id="username"> <shiro:principal/></span>]学习Shiro综合案例，
+    <a href="${pageContext.request.contextPath}/logout">退出</a>
+    <a href="${pageContext.request.contextPath}/runas" target="content">切换身份</a>
+</div>
 <div class="ui-layout-south">
     获取源码：<a href="https://github.com/JeeLearner/learning-shiro" target="_blank">https://github.com/JeeLearner/learning-shiro</a>
 </div>
@@ -27,7 +30,7 @@
 <script>
     $(function () {
         $(document).ready(function () {
-            $('body').layout({ applyDemoStyles: true });
+            $('body').layout({applyDemoStyles: true});
         });
     });
     $(function () {

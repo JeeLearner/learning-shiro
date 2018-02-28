@@ -4,8 +4,12 @@ delete from sys_role;
 delete from sys_resource;
 delete from sys_organization;
 delete from sys_url_filter;
+delete from sys_user_runas;
 
 insert into sys_user values(1,1,'admin','d3c59d25033dbf980d29554025c23a75','8d78869f470951332959580424d4bf4f', '1', false);
+insert into sys_user values(2,1,'zhang','c6a02f6c9a5aaf311ec94009b6b024d0','588ae709311808bd7e5fade1c84407c7', '1', false);
+insert into sys_user values(3,1,'wang','2e6f83bdaef108d4f23b2a1f2b9928cc','bd647b15f6724ea711272c4a3c6d16c0', '1', false);
+
 insert into sys_organization values(1, '总公司', 0, '0/', true);
 insert into sys_organization values(2, '分公司1', 1, '0/1/', true);
 insert into sys_organization values(3, '分公司2', 1, '0/1/', true);

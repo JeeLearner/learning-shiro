@@ -3,6 +3,7 @@ drop table if exists sys_organization;
 drop table if exists sys_resource;
 drop table if exists sys_role;
 drop table if exists sys_url_filter;
+drop table if exists sys_user_runas;
 
 create table sys_user (
   id bigint auto_increment,
@@ -62,3 +63,9 @@ create table sys_url_filter (
   constraint pk_sys_url_filter primary key(id)
 ) charset=utf8 ENGINE=InnoDB;
 create unique index idx_sys_url_filter_url on sys_url_filter(url);
+
+create table sys_user_runas (
+  from_user_id bigint,
+  to_user_id bigint,
+  constraint pk_sys_user_runas primary key(from_user_id, to_user_id)
+) charset=utf8 ENGINE=InnoDB;

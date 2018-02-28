@@ -50,5 +50,11 @@
         <function-class>com.learn.chapter16.support.taglib.Functions</function-class>
         <function-signature>java.lang.String resourceNames(java.util.Collection)</function-signature>
     </function>
+    <function>
+        <description>根据id获取用户名</description>
+        <name>username</name>
+        <function-class>com.learn.chapter16.support.taglib.Functions</function-class>
+        <function-signature>java.lang.String username(java.lang.Long)</function-signature>
+    </function>
 
 </taglib>
