@@ -33,3 +33,5 @@
  *  chapter20 无状态WEB应用集成
  *  chapter21 授予身份与切换身份 chapter16代码
  *  chapter22 集成验证码
+ *  chapter23 多项目集中权限管理及分布式会话
+ *  chapter24 在线会话管理 chapter16代码
