@@ -47,5 +47,6 @@ insert into sys_resource values(48, 'URL修改', 'button', '', 46, '0/1/46/', 'u
 insert into sys_resource values(49, 'URL删除', 'button', '', 46, '0/1/46/', 'urlFilter:delete', true);
 insert into sys_resource values(50, 'URL查看', 'button', '', 46, '0/1/46/', 'urlFilter:view', true);
 
+INSERT INTO sys_resource VALUES(51, '会话管理', 'menu', '/sessions', 1, '0/1/', 'session:*', TRUE);
 
 insert into sys_role values(1, 'admin', '超级管理员', '11,21,31,41,46', true);

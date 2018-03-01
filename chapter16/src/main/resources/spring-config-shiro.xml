@@ -93,11 +93,12 @@
     </bean>
 
     <!-- 基于Form表单的身份验证过滤器 -->
-    <bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
+    <bean id="formAuthenticationFilter" class="com.learn.chapter16.jcaptcha.MyFormAuthenticationFilter">
         <property name="usernameParam" value="username"/>
         <property name="passwordParam" value="password"/>
         <property name="rememberMeParam" value="rememberMe"/>
         <property name="loginUrl" value="/login"/>
+        <property name="failureKeyAttribute" value="shiroLoginFailure"/>
     </bean>
 
     <!--并发登录人数控制-->
@@ -112,6 +113,16 @@
 
     <bean id="sysUserFilter" class="com.learn.chapter16.support.shiro.filter.SysUserFilter"/>
 
+    <bean id="jCaptchaFilter" class="com.learn.chapter16.jcaptcha.JCaptchaFilter" />
+
+    <bean id="jCaptchaValidateFilter" class="com.learn.chapter16.jcaptcha.JCaptchaValidateFilter">
+        <property name="jcaptchaEbabled" value="true"/>
+        <property name="jcaptchaParam" value="jcaptchaCode"/>
+        <property name="failureKeyAttribute" value="shiroLoginFailure"/>
+    </bean>
+
+    <bean id="forceLogoutFilter" class="com.learn.chapter16.session.filter.ForceLogoutFilter"/>
+
     <!--urlFilter begin-->
     <bean id="filterChainManager" class="com.learn.chapter16.urlfilter.support.CustomDefaultFilterChainManager">
         <property name="loginUrl" value="/login"/>
@@ -122,14 +133,19 @@
             <util:map>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
                 <entry key="sysUser" value-ref="sysUserFilter"/>
+                <entry key="jCaptchaFilter" value-ref="jCaptchaFilter"/>
+                <entry key="jCaptchaValidate" value-ref="jCaptchaValidateFilter"/>
+                <entry key="forceLogout" value-ref="forceLogoutFilter"/>
             </util:map>
         </property>
         <property name="defaultFilterChainDefinitions">
             <value>
-                /login = authc
+                /static/** = anon
+                /jcaptcha* = jCaptchaFilter
+                /login = jCaptchaValidate,authc
                 /logout = logout
                 /unauthorized.jsp = authc
-                /** = user,sysUser
+                /** = user,sysUser,forceLogout
             </value>
         </property>
     </bean>

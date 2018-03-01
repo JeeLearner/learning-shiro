@@ -56,5 +56,16 @@
         <function-class>com.learn.chapter16.support.taglib.Functions</function-class>
         <function-signature>java.lang.String username(java.lang.Long)</function-signature>
     </function>
-
+    <function>
+        <description>用户身份</description>
+        <name>principal</name>
+        <function-class>com.learn.chapter16.support.taglib.Functions</function-class>
+        <function-signature>java.lang.String principal(org.apache.shiro.session.Session)</function-signature>
+    </function>
+    <function>
+        <description>是否强制退出</description>
+        <name>isForceLogout</name>
+        <function-class>com.learn.chapter16.support.taglib.Functions</function-class>
+        <function-signature>boolean isForceLogout(org.apache.shiro.session.Session)</function-signature>
+    </function>
 </taglib>

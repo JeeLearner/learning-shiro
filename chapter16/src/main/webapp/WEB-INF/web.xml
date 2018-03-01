@@ -60,6 +60,19 @@
     <dispatcher>REQUEST</dispatcher>
   </filter-mapping>
 
+  <!-- 验证码过滤器需要放到Shiro之后 因为Shiro将包装HttpSession
+        如果不 可能造成两次的sesison id 不一样
+   -->
+  <filter>
+    <filter-name>jCaptchaFilter</filter-name>
+    <filter-class>com.learn.chapter16.jcaptcha.JCaptchaFilter</filter-class>
+    <async-supported>true</async-supported>
+  </filter>
+  <filter-mapping>
+    <filter-name>jCaptchaFilter</filter-name>
+    <url-pattern>/jcaptcha.jpg</url-pattern>
+  </filter-mapping>
+
   <servlet>
     <servlet-name>spring</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
