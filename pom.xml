@@ -24,6 +24,13 @@
       <module>chapter17-server</module>
       <module>chapter17-client</module>
       <module>chapter20</module>
+      <module>chapter23-pom</module>
+    <module>chapter23-core</module>
+    <module>chapter23-server</module>
+      <module>chapter23-client</module>
+      <module>chapter23-nginx</module>
+    <module>chapter23-app1</module>
+    <module>chapter23-app2</module>
   </modules>
   <packaging>pom</packaging>
 
